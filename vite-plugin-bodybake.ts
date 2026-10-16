@@ -90,7 +90,7 @@ export function renderBakedBody(data: ProductData): string {
     `<section id="quickstart">`,
     `<h2>${escapeHtml(quickstart.heading)}</h2>`,
     `<p>${escapeHtml(quickstart.intro)}</p>`,
-    ...quickstart.blocks.map(block => `<h3>${escapeHtml(block.title)}</h3><pre><code>${escapeHtml(block.command)}</code></pre>`),
+    ...quickstart.blocks.map(block => `<h3>${escapeHtml(block.title)}</h3>${block.note ? `<p>${escapeHtml(block.note)}</p>` : ""}<pre><code>${escapeHtml(block.command)}</code></pre>`),
     `</section>`,
     `<section>`,
     `<h2>Command surface</h2>`,

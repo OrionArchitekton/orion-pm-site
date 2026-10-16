@@ -22,12 +22,12 @@ export const PRODUCT_DATA: ProductData = {
   },
   "quickstart": {
     "heading": "One store. Two workers. Clear ownership.",
-    "intro": "Put the reviewed v0.1.0 wheel and its matching SHA256SUMS in an empty folder. Run these blocks in one shell. Verified on CPython 3.11.14, WSL2 Linux and ext4; no package-index download is required.",
+    "intro": "Put the reviewed v0.1.1 wheel and its matching SHA256SUMS in an empty folder. Run these blocks in one shell. Verified on CPython 3.11.14, WSL2 Linux and ext4; no package-index download is required.",
     "blocks": [
       {
         "title": "Install the reviewed wheel",
         "note": "Stop if checksum verification fails",
-        "command": "sha256sum --check SHA256SUMS --ignore-missing &&\npython3 -m venv .venv &&\n.venv/bin/python -m pip install --no-index --no-deps orion_pm-0.1.0-py3-none-any.whl"
+        "command": "awk '$2 == \"orion_pm-0.1.1-py3-none-any.whl\" {print; found=1} END {exit !found}' SHA256SUMS > wheel.sha256 &&\nsha256sum --strict --check wheel.sha256 &&\npython3 -m venv .venv &&\n.venv/bin/python -m pip install --no-index --no-deps orion_pm-0.1.1-py3-none-any.whl"
       },
       {
         "title": "Create a new local store",
@@ -118,6 +118,11 @@ export const PRODUCT_DATA: ProductData = {
       "primary": true
     },
     {
+      "label": "Download v0.1.1 release",
+      "url": "https://github.com/OrionArchitekton/orion-pm-oss/releases/tag/v0.1.1",
+      "primary": true
+    },
+    {
       "label": "Complete guide",
       "url": "https://www.danmercede.com/guides/coordinate-local-agents-with-orion-pm",
       "primary": true
@@ -131,5 +136,5 @@ export const PRODUCT_DATA: ProductData = {
       "url": "https://www.danmercede.com"
     }
   ],
-  "footerNote": "MIT core by Dan Mercede. v0.1.0 source and release assets on GitHub."
+  "footerNote": "MIT core by Dan Mercede. v0.1.1 source and release assets on GitHub."
 };

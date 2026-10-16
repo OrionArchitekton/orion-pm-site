@@ -3,15 +3,20 @@ import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
 const html = readFileSync(new URL('../dist/index.html', import.meta.url), 'utf8');
 
+test('a reader without JavaScript can obtain the exact release and see install checks', () => {
+  assert.match(html, /href="https:\/\/github\.com\/OrionArchitekton\/orion-pm-oss\/releases\/tag\/v0\.1\.1"/);
+  assert.match(html, /Stop if checksum verification fails/);
+});
+
 test('built PM positioning, local setup and guide are visible without JavaScript', () => {
   assert.match(html, /rel="canonical" href="https:\/\/www\.danmercede\.com\/works\/orion-pm\/"/);
   assert.match(html, /<h1[^>]*>orion-pm<\/h1>/);
   assert.match(html, /guides\/coordinate-local-agents-with-orion-pm/);
   assert.match(html, /--generation/);
   assert.match(html, /--expect-revision/);
-  assert.match(html, /orion_pm-0\.1\.0-py3-none-any\.whl/);
+  assert.match(html, /orion_pm-0\.1\.1-py3-none-any\.whl/);
   assert.match(html, /not.*permission|does not.*permission/i);
-  assert.doesNotMatch(html, /mcp-context-budget|pypi\.org|pip install orion-pm|v0\.4\.0|0\.1\.0\.dev0/);
+  assert.doesNotMatch(html, /mcp-context-budget|pypi\.org|pip install orion-pm|v0\.4\.0|0\.1\.1\.dev0/);
 });
 
 test('all scripts, styles and metadata resolve through the Works prefix', () => {
