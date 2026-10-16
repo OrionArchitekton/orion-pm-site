@@ -4,8 +4,9 @@ import { readFileSync, existsSync } from 'node:fs';
 const html = readFileSync(new URL('../dist/index.html', import.meta.url), 'utf8');
 
 test('a reader without JavaScript can obtain the exact release and see install checks', () => {
-  assert.match(html, /href="https:\/\/github\.com\/OrionArchitekton\/orion-pm-oss\/releases\/tag\/v0\.1\.1"/);
-  assert.match(html, /Stop if checksum verification fails/);
+  const visibleMarkup = html.replace(/<!--[\s\S]*?-->/g, '').replace(/<script\b[\s\S]*?<\/script>/g, '');
+  assert.match(visibleMarkup, /<a\b[^>]*href="https:\/\/github\.com\/OrionArchitekton\/orion-pm-oss\/releases\/tag\/v0\.1\.1"[^>]*>Download v0\.1\.1 release<\/a>/);
+  assert.match(visibleMarkup, /<p>Stop if checksum verification fails<\/p>/);
 });
 
 test('built PM positioning, local setup and guide are visible without JavaScript', () => {

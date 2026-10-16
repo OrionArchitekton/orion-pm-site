@@ -9,6 +9,22 @@ import { createHash } from 'node:crypto';
 const source = readFileSync(new URL('../constants.ts', import.meta.url), 'utf8');
 const data = JSON.parse(source.match(/export const PRODUCT_DATA: ProductData = ([\s\S]+);/)[1]);
 
+test('the same checksum selection accepts a matching wheel entry', () => {
+  const folder = mkdtempSync(join(tmpdir(), 'pm-listed-wheel-'));
+  try {
+    const name = 'orion_pm-0.1.1-py3-none-any.whl';
+    const bytes = 'synthetic checksum fixture';
+    writeFileSync(join(folder, name), bytes);
+    writeFileSync(join(folder, 'SHA256SUMS'), `${createHash('sha256').update(bytes).digest('hex')}  ${name}\n`);
+    const check = data.quickstart.blocks[0].command.split('&&\npython3 -m venv')[0];
+    const result = spawnSync('bash', ['--noprofile', '--norc', '-c', check], { cwd: folder, encoding: 'utf8', timeout: 10000 });
+    assert.equal(result.status, 0, result.stderr);
+    assert.match(result.stdout, /orion_pm-0\.1\.1-py3-none-any\.whl: OK/);
+  } finally {
+    rmSync(folder, { recursive: true, force: true });
+  }
+});
+
 test('the independent origin serves Works-prefixed entry and asset requests', () => {
   const config = JSON.parse(readFileSync(new URL('../vercel.json', import.meta.url), 'utf8'));
   assert.ok(config.rewrites?.some(r => r.source === '/works/orion-pm/' && r.destination === '/'));
