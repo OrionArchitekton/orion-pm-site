@@ -51,9 +51,25 @@ test('install refuses a manifest that authenticates only a different file', () =
     const sha = createHash('sha256').update('another asset').digest('hex');
     writeFileSync(join(folder, 'SHA256SUMS'), `${sha}  other.txt\n`);
     const result = spawnSync('bash', ['--noprofile', '--norc', '-c', data.quickstart.blocks[0].command], { cwd: folder, encoding: 'utf8', timeout: 10000 });
+    assert.equal(result.error, undefined);
+    assert.notEqual(result.status, null);
     assert.notEqual(result.status, 0);
     assert.equal(existsSync(join(folder, '.venv')), false, 'unlisted wheel reached environment creation');
   } finally {
     rmSync(folder, { recursive: true, force: true });
   }
+});
+
+test('a listed wheel with changed bytes refuses before environment creation', () => {
+  const folder = mkdtempSync(join(tmpdir(), 'pm-changed-wheel-'));
+  try {
+    writeFileSync(join(folder, 'SHA256SUMS'), readFileSync(new URL('./fixtures/orion-pm-0.1.1-SHA256SUMS', import.meta.url)));
+    writeFileSync(join(folder, 'orion_pm-0.1.1-py3-none-any.whl'), 'changed wheel');
+    const result = spawnSync('bash', ['--noprofile', '--norc', '-c', data.quickstart.blocks[0].command], { cwd: folder, encoding: 'utf8', timeout: 10000 });
+    assert.equal(result.error, undefined);
+    assert.notEqual(result.status, null);
+    assert.notEqual(result.status, 0);
+    assert.match(result.stdout, /orion_pm-0\.1\.1-py3-none-any\.whl: FAILED/);
+    assert.equal(existsSync(join(folder, '.venv')), false);
+  } finally { rmSync(folder, { recursive: true, force: true }); }
 });
