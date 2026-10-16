@@ -5,17 +5,17 @@ topics: [orion-pm, product-page, private-release-preparation]
 references: [vite.config.ts, vercel.json, constants.ts, index.html, specs/orion-pm-product-page-spec.md]
 ---
 
-# Prepare and later release the product page
+# Release the product page
 
 Run npm ci, npm run build, npm test and inspect mounted desktop/mobile behavior.
 Verify the guide, section anchors, canonical URL, social image and stripped asset
-paths in a local proxy preview. Keep source, build and receipts private for review.
+paths in a local proxy preview. Keep unpublished source and operational receipts private for review.
 This template-derived branch must never be pushed to the template's remote.
 
 After approval, export fresh source with no .vercel linkage or template Git
 history. Confirm the chosen site source home/admission and new remote/project
-before any public action. The proposed independent origin is
-https://orion-pm-site.vercel.app/; no such deployment is established by preparation.
+before any public action. The independent origin is https://orion-pm-site.vercel.app/. Record the actual
+project identity and READY production deployment before claiming it live.
 
 Replace planned-source labels only once the exact core source/release exists.
 Deploy the approved independent site first and verify HTML/assets without an
@@ -44,8 +44,8 @@ Inspect desktop/mobile pages after every toolchain update. Tailwind 4 requires
 modern browsers: Safari 16.4+, Chrome 111+, Firefox 128+; this package's observed
 UI receipt covers the named Chrome version only. Other browsers remain untested.
 An audit result is point-in-time dependency evidence, not a security guarantee.
-The old private package is retained for comparison and reversal; no production
-migration has occurred.
+The old private package is retained for comparison and reversal. The original
+PM repository and estate runtime stay private and unchanged.
 
 Upstream references: https://github.com/advisories/GHSA-vfj7-8cjw-p6xm and
 https://tailwindcss.com/docs/upgrade-guide.
