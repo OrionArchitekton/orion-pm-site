@@ -7,6 +7,8 @@ test('a reader without JavaScript can obtain the exact release and see install c
   const visibleMarkup = html.replace(/<!--[\s\S]*?-->/g, '').replace(/<script\b[\s\S]*?<\/script>/g, '');
   assert.match(visibleMarkup, /<a\b[^>]*href="https:\/\/github\.com\/OrionArchitekton\/orion-pm-oss\/releases\/tag\/v0\.1\.1"[^>]*>Download v0\.1\.1 release<\/a>/);
   assert.match(visibleMarkup, /<p>Stop if checksum verification fails<\/p>/);
+  const metadata = JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
+  assert.equal(metadata['@graph'].find(node => node['@type'] === 'SoftwareSourceCode').version, '0.1.1');
 });
 
 test('built PM positioning, local setup and guide are visible without JavaScript', () => {
