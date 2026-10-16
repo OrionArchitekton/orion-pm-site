@@ -10,6 +10,13 @@
       ]
     }
   ],
+  "redirects": [
+    {
+      "source": "/works/orion-pm",
+      "destination": "/works/orion-pm/",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/works/orion-pm/",

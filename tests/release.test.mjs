@@ -43,6 +43,11 @@ test('the independent origin serves Works-prefixed entry and asset requests', ()
   assert.ok(config.rewrites?.some(r => r.source === '/works/orion-pm/:path*' && r.destination === '/:path*'));
 });
 
+test('the independent origin redirects the bare Works path to its canonical trailing slash', () => {
+  const config = JSON.parse(readFileSync(new URL('../vercel.json', import.meta.url), 'utf8'));
+  assert.ok(config.redirects?.some(r => r.source === '/works/orion-pm' && r.destination === '/works/orion-pm/' && r.permanent === true));
+});
+
 test('install refuses a manifest that authenticates only a different file', () => {
   const folder = mkdtempSync(join(tmpdir(), 'pm-unlisted-wheel-'));
   try {
