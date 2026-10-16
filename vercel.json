@@ -9,5 +9,22 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/works/orion-pm",
+      "destination": "/works/orion-pm/",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/works/orion-pm/",
+      "destination": "/"
+    },
+    {
+      "source": "/works/orion-pm/:path*",
+      "destination": "/:path*"
+    }
   ]
 }
