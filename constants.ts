@@ -27,7 +27,7 @@ export const PRODUCT_DATA: ProductData = {
       {
         "title": "Install the reviewed wheel",
         "note": "Stop if checksum verification fails",
-        "command": "awk '$2 == \"orion_pm-0.1.1-py3-none-any.whl\" {print; found=1} END {exit !found}' SHA256SUMS > wheel.sha256 &&\nsha256sum --strict --check wheel.sha256 &&\nawk '{print \"./\" $2 \" --hash=sha256:\" $1}' wheel.sha256 > wheel.requirements &&\npython3 -m venv .venv &&\n.venv/bin/python -m pip install --no-index --no-deps --require-hashes -r wheel.requirements"
+        "command": "printf '%s\\n' '1aa321ef138359e8fe6cff11d9ed43c3950ca559a5bda91e854144a4908be92b  SHA256SUMS' | sha256sum --strict --check - &&\nawk '$2 == \"orion_pm-0.1.1-py3-none-any.whl\" {print; found=1} END {exit !found}' SHA256SUMS > wheel.sha256 &&\nsha256sum --strict --check wheel.sha256 &&\nawk '{print \"./\" $2 \" --hash=sha256:\" $1}' wheel.sha256 > wheel.requirements &&\npython3 -m venv .venv &&\n.venv/bin/python -m pip install --no-index --no-deps --require-hashes -r wheel.requirements"
       },
       {
         "title": "Create a new local store",

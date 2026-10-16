@@ -9,6 +9,17 @@ import { createHash } from 'node:crypto';
 const source = readFileSync(new URL('../constants.ts', import.meta.url), 'utf8');
 const data = JSON.parse(source.match(/export const PRODUCT_DATA: ProductData = ([\s\S]+);/)[1]);
 
+test('the recorded release manifest passes the exact digest gate', () => {
+  const folder = mkdtempSync(join(tmpdir(), 'pm-manifest-pin-'));
+  try {
+    writeFileSync(join(folder, 'SHA256SUMS'), readFileSync(new URL('./fixtures/orion-pm-0.1.1-SHA256SUMS', import.meta.url)));
+    const command = data.quickstart.blocks[0].command.split('&&\n')[0];
+    const result = spawnSync('bash', ['--noprofile', '--norc', '-c', command], { cwd: folder, encoding: 'utf8', timeout: 10000 });
+    assert.equal(result.status, 0, result.stderr);
+    assert.match(result.stdout, /SHA256SUMS: OK/);
+  } finally { rmSync(folder, { recursive: true, force: true }); }
+});
+
 test('the same checksum selection accepts a matching wheel entry', () => {
   const folder = mkdtempSync(join(tmpdir(), 'pm-listed-wheel-'));
   try {
@@ -16,7 +27,8 @@ test('the same checksum selection accepts a matching wheel entry', () => {
     const bytes = 'synthetic checksum fixture';
     writeFileSync(join(folder, name), bytes);
     writeFileSync(join(folder, 'SHA256SUMS'), `${createHash('sha256').update(bytes).digest('hex')}  ${name}\n`);
-    const check = data.quickstart.blocks[0].command.split('&&\npython3 -m venv')[0];
+    // The manifest pin has its own fixture; this checks exact-file selection.
+    const check = data.quickstart.blocks[0].command.split('&&\n').slice(1).join('&&\n').split('&&\npython3 -m venv')[0];
     const result = spawnSync('bash', ['--noprofile', '--norc', '-c', check], { cwd: folder, encoding: 'utf8', timeout: 10000 });
     assert.equal(result.status, 0, result.stderr);
     assert.match(result.stdout, /orion_pm-0\.1\.1-py3-none-any\.whl: OK/);
