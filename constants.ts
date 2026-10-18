@@ -132,6 +132,10 @@ export const PRODUCT_DATA: ProductData = {
       "url": "https://github.com/OrionArchitekton/orion-pm-oss/blob/main/docs/browser-composition.md"
     },
     {
+      "label": "PM + browser + Handoff starter preview (CPython 3.11 / WSL2)",
+      "url": "https://www.danmercede.com/guides/continue-agent-tasks-with-orion-starter"
+    },
+    {
       "label": "Dan Mercede",
       "url": "https://www.danmercede.com"
     }
