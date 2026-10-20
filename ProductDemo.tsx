@@ -8,7 +8,7 @@ export function ProductDemo() {
       aria-labelledby="product-demo-title" aria-describedby="product-demo-disclosure"
       className="product-demo-player w-full rounded-md border border-neutral-200 bg-neutral-900">
       <source src={`${media}.mp4`} type="video/mp4" />
-      <track kind="captions" src={`${media}.vtt`} srcLang="en" label="English" default />
+      <track kind="captions" src={`${media}.vtt`} srcLang="en" label="English" />
       Your browser cannot play this video. Use the download link below.
     </video>
     <p className="text-sm mt-3"><a href={`${media}.mp4`} download className="underline underline-offset-4">Download the demo video</a></p>

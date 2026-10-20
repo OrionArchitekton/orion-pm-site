@@ -14,3 +14,5 @@ references: [specs/product-demo-spec.md, demos/product/media-manifest.json, pack
 5. Monitor the product route and media responses for failures. Operator playback is not organic audience activity.
 
 Rollback: revert this PR or restore this site's preceding production deployment. Keep source releases, guides and other products unchanged. Retain failed render evidence outside public source.
+
+Startup validation: Hold the deferred client bundle, start playback with native controls, select captions, then release the bundle. Verify the same player continues with its position and caption selection intact. Native captions stay opt-in because these recordings already contain open captions.

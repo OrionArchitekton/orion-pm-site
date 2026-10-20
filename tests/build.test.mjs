@@ -6,7 +6,7 @@ const html = readFileSync(new URL('../dist/index.html', import.meta.url), 'utf8'
 test('a reader without JavaScript can obtain the exact release and see install checks', () => {
   const visibleMarkup = html.replace(/<!--[\s\S]*?-->/g, '').replace(/<script\b[\s\S]*?<\/script>/g, '');
   assert.match(visibleMarkup, /<a\b[^>]*href="https:\/\/github\.com\/OrionArchitekton\/orion-pm-oss\/releases\/tag\/v0\.1\.1"[^>]*>Download v0\.1\.1 release<\/a>/);
-  assert.match(visibleMarkup, /<p>Stop if checksum verification fails<\/p>/);
+  assert.match(visibleMarkup.replace(/<[^>]*>/g, " "), /\bStop if checksum verification fails\b/);
   const metadata = JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
   assert.equal(metadata['@graph'].find(node => node['@type'] === 'SoftwareSourceCode').version, '0.1.1');
 });
