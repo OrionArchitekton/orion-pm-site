@@ -198,6 +198,13 @@ const App: React.FC = () => {
           </div>
         </section>
 
+        <aside aria-labelledby="development-evidence-heading" className="mt-12 mb-12 rounded-md border border-neutral-200 p-6">
+          <h2 id="development-evidence-heading" className="font-mono text-sm font-semibold text-neutral-900 mb-3">Carry development evidence between workers</h2>
+          <p className="text-sm text-neutral-700 leading-7">Try the optional Orion Starter development evidence preview: retain an exact worktree observation, hand over a compact reference, then recover and independently observe before completing a local demonstration.</p>
+          <a className="inline-block mt-3 text-sm underline underline-offset-4 hover:text-copper-deep" href="https://www.danmercede.com/guides/agent-development-evidence-handoff">Read the development evidence walkthrough</a>
+          <p className="mt-3 text-xs text-neutral-600 leading-6">Completion demonstrates a deliberately created overlap. It makes no merge-safety claim.</p>
+        </aside>
+
         {/* 7. Footer */}
         <footer className="mt-20 pt-8 border-t border-neutral-100 flex flex-col gap-4 text-xs text-neutral-500 font-mono">
           <ul className="flex flex-col sm:flex-row gap-2 sm:gap-6">
