@@ -1,3 +1,6 @@
+import React from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
+import { ProductDemo } from './ProductDemo';
 import type { Plugin } from 'vite';
 import { PRODUCT_DATA } from './constants';
 import type { ProductData } from './types';
@@ -15,8 +18,8 @@ import type { ProductData } from './types';
  * baked markup is the crawler payload and is replaced by the live app for human
  * visitors (prerender-into-root / progressive-enhancement pattern).
  *
- * This is a no-SSR, browserless, build-time string emission — NOT a framework or
- * SSR-runtime migration.
+ * The page remains a browserless build-time emission. Its product demo uses the
+ * same small React component as the client; no server runtime is introduced.
  */
 
 function escapeHtml(value: string): string {
@@ -74,7 +77,7 @@ export function renderBakedBody(data: ProductData): string {
   // provides (no-JS / pre-hydration a11y parity).
   return [
     `<a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-4 focus:left-4 focus:rounded-sm focus:bg-neutral-900 focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-white focus:no-underline">Skip to main content</a>`,
-    `<main id="main-content" tabindex="-1">`,
+    `<main id="main-content" tabindex="-1" class="max-w-3xl mx-auto px-6 py-12 md:py-20">`,
     `<header>`,
     `<h1>${escapeHtml(name)}</h1>`,
     `<p>${escapeHtml(tagline)}</p>`,
@@ -82,6 +85,7 @@ export function renderBakedBody(data: ProductData): string {
     `<a href="${escapeHtml(cta.primaryUrl)}">${escapeHtml(cta.primaryLabel)}</a>`,
     `<a href="${escapeHtml(cta.secondaryUrl)}">${escapeHtml(cta.secondaryLabel)}</a>`,
     `</header>`,
+    renderToStaticMarkup(React.createElement(ProductDemo)),
     `<section>`,
     `<h2>${escapeHtml(problem.heading)}</h2>`,
     `<p>${escapeHtml(problem.body)}</p>`,
@@ -90,7 +94,7 @@ export function renderBakedBody(data: ProductData): string {
     `<section id="quickstart">`,
     `<h2>${escapeHtml(quickstart.heading)}</h2>`,
     `<p>${escapeHtml(quickstart.intro)}</p>`,
-    ...quickstart.blocks.map(block => `<h3>${escapeHtml(block.title)}</h3>${block.note ? `<p>${escapeHtml(block.note)}</p>` : ""}<pre><code>${escapeHtml(block.command)}</code></pre>`),
+    ...quickstart.blocks.map(block => `<h3>${escapeHtml(block.title)}</h3>${block.note ? `<p>${escapeHtml(block.note)}</p>` : ""}<pre class="overflow-x-auto"><code>${escapeHtml(block.command)}</code></pre>`),
     `</section>`,
     `<section>`,
     `<h2>Command surface</h2>`,

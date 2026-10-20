@@ -8,6 +8,7 @@
 @source "./index.html";
 @source "./index.tsx";
 @source "./App.tsx";
+@source "./ProductDemo.tsx";
 @source "./constants.ts";
 @source "./vite-plugin-bodybake.ts";
 
@@ -94,3 +95,5 @@
 
 :focus-visible { outline: 2px solid #b95122; outline-offset: 4px; }
 #quickstart { scroll-margin-top: 2rem; }
+
+.product-demo-player { width: 100%; height: auto; aspect-ratio: 16 / 9; }
