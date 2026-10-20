@@ -1,0 +1,58 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:01.920
+Orion PM. Get excited about it, it's
+
+00:00:01.920 --> 00:00:03.200
+a lot of fun, I'm here to
+
+00:00:03.200 --> 00:00:04.460
+show you what we're doing. Watch what
+
+00:00:04.460 --> 00:00:05.900
+happens when I make them claim it
+
+00:00:05.900 --> 00:00:08.380
+first. One gets the job and the
+
+00:00:08.380 --> 00:00:10.433
+other gets told to stop.
+
+00:00:10.433 --> 00:00:14.293
+First, I probe the work that
+
+00:00:14.293 --> 00:00:16.407
+overlaps. If you find a live holder,
+
+00:00:16.927 --> 00:00:19.023
+stop and coordinate with that worker. But
+
+00:00:19.023 --> 00:00:20.763
+I still have to claim the task
+
+00:00:20.763 --> 00:00:23.703
+because another worker can arrive after I
+
+00:00:23.703 --> 00:00:27.123
+read the probe result, right? You understand
+
+00:00:27.123 --> 00:00:28.523
+what I'm saying? So I've got two
+
+00:00:28.523 --> 00:00:31.863
+separate command line processes waiting at the
+
+00:00:31.863 --> 00:00:34.443
+same starting point. I let both of
+
+00:00:34.443 --> 00:00:36.867
+them ask for this one task and
+
+00:00:37.163 --> 00:00:39.643
+there's the result one process returned to
+
+00:00:39.643 --> 00:00:42.243
+zero and got a live claim and
+
+00:00:42.243 --> 00:00:45.133
+the other returned three and was refused

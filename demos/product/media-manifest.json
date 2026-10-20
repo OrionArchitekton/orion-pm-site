@@ -1,0 +1,24 @@
+{
+  "slug": "orion-pm",
+  "demonstrated_version": "v0.1.1",
+  "source_name": "g03-review-v2.mp4",
+  "source_sha256": "3007d9ea9b57fea31005444cf6ecf3d159e10f9f0584cf28926518c167bde859",
+  "ranges_seconds": [
+    [
+      24.817,
+      35.25
+    ],
+    [
+      295.7,
+      330.4
+    ]
+  ],
+  "duration_seconds": 45.133333,
+  "voice": "Original recorded Dan narration, unchanged within excerpts",
+  "files": {
+    "orion-pm-demo.mp4": "a65ebb7522c3a6c0e69c6f58a17a431e43378cc661580263437e0b30acec5771",
+    "orion-pm-demo.jpg": "d7cc2b556e3819a3a59ab99e0af035e30a21788470bc244f6196bede6fa67379",
+    "orion-pm-demo.vtt": "2a7a45a6f689ba1f40a4267d753fb6bb8dd4ddee9ca1c9ab90df75196ec80008"
+  },
+  "caption_note": "Original guide captions retimed to the excerpt; words outside cut boundaries removed after an independent ASR check."
+}

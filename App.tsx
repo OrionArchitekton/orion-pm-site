@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { ProductDemo } from './ProductDemo';
+import React, { useState, useEffect } from 'react';
 import { PRODUCT_DATA } from './constants';
 import type { DemoLine } from './types';
 
@@ -16,6 +17,9 @@ const CommandBlock: React.FC<{ title: string; note?: string; command: string }> 
   command,
 }) => {
   const [copied, setCopied] = useState(false);
+
+  const [copyReady, setCopyReady] = useState(false);
+  useEffect(() => setCopyReady(Boolean(navigator.clipboard)), []);
 
   const copy = () => {
     if (typeof navigator !== 'undefined' && navigator.clipboard) {
@@ -38,6 +42,7 @@ const CommandBlock: React.FC<{ title: string; note?: string; command: string }> 
         </pre>
         <button
           onClick={copy}
+          disabled={!copyReady}
           className="no-print absolute top-2 right-2 text-[10px] uppercase tracking-wider font-mono text-neutral-400 hover:text-white bg-neutral-900/70 backdrop-blur-xs border border-neutral-700 hover:border-neutral-400 rounded-sm px-2 py-1 transition-colors"
           aria-label={`Copy command: ${title}`}
         >
@@ -112,6 +117,7 @@ const App: React.FC = () => {
             </a>
           </div>
         </header>
+      <ProductDemo />
 
         {/* 2. The problem */}
         <section>
