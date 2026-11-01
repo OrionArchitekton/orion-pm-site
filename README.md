@@ -1,5 +1,7 @@
 # Orion PM Works microsite
 
+Part of [Cosmocrat OS](https://www.cosmocrat.ai/tools#orion-pm).
+
 Project positioning page for [Orion PM core](https://github.com/OrionArchitekton/orion-pm-oss), served at https://www.danmercede.com/works/orion-pm/ through the brand hub's prefix-stripped Vercel proxy.
 
 Run `npm ci`, `npx tsc --noEmit`, `npm run build`, then `npm test`. Tests inspect built HTML. Verify desktop/mobile and mounted section navigation before deploying. The product core, guide and hub wiring have separate sources.
