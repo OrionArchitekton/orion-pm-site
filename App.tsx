@@ -224,6 +224,7 @@ const App: React.FC = () => {
             <p>{footerNote}</p>
             <p>&copy; {2026} Dan Mercede</p>
           </div>
+          <p>Part of <a href="https://www.cosmocrat.ai/tools#orion-pm" rel="noopener noreferrer" className="text-neutral-700 underline decoration-1 decoration-neutral-300 hover:decoration-copper-dark underline-offset-4 transition-all">Cosmocrat OS</a>.</p>
         </footer>
       </main>
     </div>
